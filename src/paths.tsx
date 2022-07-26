@@ -26,23 +26,23 @@ function Paths() {
   useEffect(() => {
     const params = new URLSearchParams();
     params.append("tokenid", localStorage.getItem("logintoken") || "");
-    // api.post("/auth/authenticaded", params).then((res) => {
-    //   if (res.data === "succesful authenticated") {
-    //     navigate("/todos");
-    //   } else localStorage.removeItem("logintoken");
-    // }
-    // );
+    api.post("/auth/authenticaded", params).then((res) => {
+      if (res.data === "succesful authenticated") {
+        navigate("/todos");
+      } else localStorage.removeItem("logintoken");
+    }
+    );
   }, []);
   return (
     <>
       <Routes>
-        <Route path={usedPaths.landing} element={<Landing />} />
-        <Route path={usedPaths.register} element={<Register />} />
-        <Route path={usedPaths.login} element={<Login />} />
-        <Route path={usedPaths.todos} element={<TodoList />} />
+        <Route path="/" element={<Landing />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/todos" element={<TodoList />} />
       </Routes>
       {Object.values(usedPaths).includes(loc) ? null : (
-        <Navigate to={usedPaths.landing} replace={true} />
+        <Navigate to="/" replace={true} />
       )}
     </>
   );
