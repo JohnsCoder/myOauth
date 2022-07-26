@@ -1,10 +1,10 @@
-import { Children, createContext, ReactNode, useState } from "react";
+import { createContext, ReactNode, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import api from "../services/api";
 
 interface RegisterContextInterface {
   handleData: (e: React.ChangeEvent<HTMLInputElement>) => void;
   register: () => void;
-  registered: boolean;
 }
 
 type user = {
@@ -24,7 +24,13 @@ function RegisterProvider({ children }: { children: ReactNode }) {
     password: "",
   });
 
-  const [registered, setRegistered] = useState<boolean>(false);
+  const navigate = useNavigate();
+
+  const params = new URLSearchParams();
+  params.append("nickname", user.nickname);
+  params.append("email", user.email);
+  params.append("number", user.phonenumber);
+  params.append("password", user.password);
 
   function handleData(e: React.ChangeEvent<HTMLInputElement>) {
     setUser((data) => ({
@@ -32,30 +38,19 @@ function RegisterProvider({ children }: { children: ReactNode }) {
       [e.target.name]: e.target.value,
     }));
   }
-  function register(): void {
-    const params = new URLSearchParams();
-    params.append("nickname", user.nickname);
-    params.append("email", user.email);
-    params.append("number", user.phonenumber);
-    params.append("password", user.password);
 
-    if (
-      user.nickname === "" ||
-      user.email === "" ||
-      user.phonenumber === "" ||
-      user.password === ""
-    )
-      alert("values can't be empty");
-    else
+  function register(): void {
+    if (Object.values(user).every((e) => e !== ""))
       api
         .post("/auth/register", params)
         .then((res) => {
-          setRegistered((registered) => !registered);
+          return navigate("/login");
         })
         .catch((err) => alert(err.response.data));
+    else alert("values can't be empty");
   }
   return (
-    <RegisterContext.Provider value={{ handleData, register, registered }}>
+    <RegisterContext.Provider value={{ handleData, register }}>
       {children}
     </RegisterContext.Provider>
   );

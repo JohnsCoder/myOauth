@@ -1,4 +1,5 @@
-import { createContext, ReactNode, useEffect, useState } from "react";
+import { createContext, ReactNode, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import api from "../services/api";
 
 interface LoginContextInterface {
@@ -14,13 +15,17 @@ type user = {
 export const LoginContext = createContext({} as LoginContextInterface);
 
 function LoginProvider({ children }: { children: ReactNode }) {
+  const [loged, setLoged] = useState(false);
   const [user, setUser] = useState<user>({
     email: "",
     password: "",
   });
-  const [loged, setLoged] = useState(false);
 
-  useEffect(() => {}, []);
+  const navigate = useNavigate();
+
+  const params = new URLSearchParams();
+  params.append("email", user.email);
+  params.append("password", user.password);
 
   function handleData(e: React.ChangeEvent<HTMLInputElement>) {
     setUser((user) => ({
@@ -30,21 +35,16 @@ function LoginProvider({ children }: { children: ReactNode }) {
   }
 
   function login() {
-    const params = new URLSearchParams();
-    params.append("email", user.email);
-    params.append("password", user.password);
-    if (user.email === "" || user.password === "")
-      alert("values can't be empty");
-    else
+    if (Object.values(user).every((e) => e !== ""))
       api
         .post("/auth/login", params)
         .then((res) => {
-          setLoged((loged) => !loged);
           localStorage.setItem("logintoken", res.data);
-    window.location.reload()
-
+          navigate("/todos");
+          window.location.reload();
         })
         .catch((err) => alert(err.response.data));
+    else alert("values can't be empty");
   }
 
   return (

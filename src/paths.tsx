@@ -22,9 +22,7 @@ const usedPaths = {
   todos: "/todos",
 };
 function Paths() {
-  const { registered } = useContext(RegisterContext);
   const { loged } = useContext(LoginContext);
-  const { isLogout } = useContext(TodosContext);
   const loc = useLocation().pathname;
   const [authed, setAuthed] = useState(false);
   function authenticate() {
@@ -51,21 +49,9 @@ function Paths() {
         <Navigate to={usedPaths.landing} replace={true} />
       )}
 
-      {registered && loc === "/register" ? (
-        <Navigate to={usedPaths.login} replace={true} />
-      ) : null}
-
-      {loged && loc === "/login" ? (
-        <Navigate to={usedPaths.todos} replace={true} />
-      ) : null}
-
       {authed && loc !== "/todos" ? (
         <Navigate to={usedPaths.todos} replace={true} />
       ) : null}
-
-      {/* {!isLogout && loc === "/todos" ? (
-        <Navigate to={usedPaths.login} replace={true} />
-      ) : null} */}
     </>
   );
 }
