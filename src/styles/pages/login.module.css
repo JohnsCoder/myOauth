@@ -1,0 +1,53 @@
+.login {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: calc(100% - 66.06px);
+}
+
+.formLogin {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 400px;
+  width: 400px;
+  background-color: rgb(74, 74, 74);
+
+  border-radius: 5px;
+  justify-content: space-around;
+}
+
+.formLogin > div:nth-child(2),
+.formLogin > div:nth-child(3) {
+  width: 90%;
+}
+
+.formLogin div:nth-child(4) {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.formLogin div:nth-child(4) div {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.formLogin div:nth-child(4) div a{
+  width: 120px;
+  color: white;
+}
+
+input {
+  height: 30px;
+  width: 100%;
+  outline: none;
+  padding: 10px;
+}
+
+button {
+  width: 200px;
+  height: 40px;
+}

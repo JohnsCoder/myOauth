@@ -1,0 +1,26 @@
+.authWindow {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.692);
+  display: block;
+}
+
+.authWindow div {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  height: 200px;
+  background-color: #e2e2e2;
+  align-items: center;
+  text-align: center;
+  top: 0;
+  margin: calc(50vh - 100px) calc(50vw - 200px);
+}
+
+.authWindow div span {
+  color: black;
+  font-size: 2em;
+}

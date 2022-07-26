@@ -1,0 +1,33 @@
+.cards {
+     display: flex;
+     justify-content: space-between;
+     width: 540px;
+     height: 80px;
+     margin-top: 30px;
+     border-radius: 10px;
+     background-color: #484848;
+     color: black;
+     font-size: 25px;
+     padding: 10px;
+     
+}
+
+.cards span {
+     overflow: hidden;
+}
+
+.cards svg {
+     align-self: center;
+     /* font-size: ; */
+     height: 30px;
+     width: 50px;
+     padding: 10px;
+     margin: 10px;
+     border-radius: 10px;
+     transition: all .5s;
+}
+
+.cards svg:hover {
+     background-color: rgb(203, 203, 203);
+
+}
