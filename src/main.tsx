@@ -10,15 +10,17 @@ import LoginProvider from "./contexts/loginContexts";
 import TodosProvider from "./contexts/todosContexts";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
-  <React.StrictMode>
-    <RegisterProvider>
-      <LoginProvider>
-        <TodosProvider>
-          <BrowserRouter>
-            <Paths />
-          </BrowserRouter>
-        </TodosProvider>
-      </LoginProvider>
-    </RegisterProvider>
-  </React.StrictMode>
+  <>
+    <BrowserRouter>
+      <React.StrictMode>
+        <RegisterProvider>
+          <LoginProvider>
+            <TodosProvider>
+              <Paths />
+            </TodosProvider>
+          </LoginProvider>
+        </RegisterProvider>
+      </React.StrictMode>
+    </BrowserRouter>
+  </>
 );
