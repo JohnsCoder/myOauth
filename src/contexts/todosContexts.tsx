@@ -29,7 +29,7 @@ function TodosProvider({ children }: { children: ReactNode }) {
       if (res.data === "succesful authenticated") null;
       else {
         localStorage.removeItem("logintoken");
-        navigate("/login");
+        navigate("/");
       }
     });
   }, []);

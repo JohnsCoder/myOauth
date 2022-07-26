@@ -1,6 +1,6 @@
-import Header from "../components/header";
-import styles from "../styles/pages/register.module.css";
-import { RegisterContext } from "../contexts/registerContext";
+import Header from "../../components/header";
+import styles from "../../styles/pages/register.module.css";
+import { RegisterContext } from "../../contexts/registerContext";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -50,7 +50,7 @@ function Register() {
             <button
               onClick={(e) => {
                 e.preventDefault();
-                register();
+                () => register();
               }}
             >
               Register

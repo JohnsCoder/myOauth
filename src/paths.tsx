@@ -7,10 +7,10 @@ import {
   useLocation,
   useNavigate,
 } from "react-router-dom";
-import Landing from "./pages/landing";
-import Login from "./pages/login";
-import Register from "./pages/register";
-import TodoList from "./pages/todoList";
+import Landing from "./pages/landing/index";
+import Login from "./pages/login/index";
+import Register from "./pages/register/index";
+import TodoList from "./pages/todoList/index";
 import api from "./services/api";
 
 const usedPaths = {
@@ -26,11 +26,12 @@ function Paths() {
   useEffect(() => {
     const params = new URLSearchParams();
     params.append("tokenid", localStorage.getItem("logintoken") || "");
-    api.post("/auth/authenticaded", params).then((res) => {
-      if (res.data === "succesful authenticated") {
-        navigate("/todos");
-      } else localStorage.removeItem("logintoken");
-    });
+    // api.post("/auth/authenticaded", params).then((res) => {
+    //   if (res.data === "succesful authenticated") {
+    //     navigate("/todos");
+    //   } else localStorage.removeItem("logintoken");
+    // }
+    // );
   }, []);
   return (
     <>

@@ -44,7 +44,7 @@ function RegisterProvider({ children }: { children: ReactNode }) {
       api
         .post("/auth/register", params)
         .then((res) => {
-          return navigate("/login");
+          navigate("/login");
         })
         .catch((err) => alert(err.response.data));
     else alert("values can't be empty");

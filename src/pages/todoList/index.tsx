@@ -1,8 +1,8 @@
-import styles from "../styles/pages/todoList.module.css";
-import Header from "../components/header";
-import Cards from "../components/cards";
+import styles from "../../styles/pages/todoList.module.css";
+import Header from "../../components/header";
+import Cards from "../../components/cards";
 import { useContext, useEffect } from "react";
-import { TodosContext } from "../contexts/todosContexts";
+import { TodosContext } from "../../contexts/todosContexts";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 
