@@ -5,10 +5,8 @@ import {
   Route,
   Routes,
   useLocation,
+  useNavigate,
 } from "react-router-dom";
-import { LoginContext } from "./contexts/loginContexts";
-import { RegisterContext } from "./contexts/registerContext";
-import { TodosContext } from "./contexts/todosContexts";
 import Landing from "./pages/landing";
 import Login from "./pages/login";
 import Register from "./pages/register";
@@ -22,20 +20,17 @@ const usedPaths = {
   todos: "/todos",
 };
 function Paths() {
-  const { loged } = useContext(LoginContext);
   const loc = useLocation().pathname;
-  const [authed, setAuthed] = useState(false);
-  function authenticate() {
+
+  const navigate = useNavigate();
+  useEffect(() => {
     const params = new URLSearchParams();
     params.append("tokenid", localStorage.getItem("logintoken") || "");
     api.post("/auth/authenticaded", params).then((res) => {
       if (res.data === "succesful authenticated") {
-        setAuthed(true);
+        navigate("/todos");
       } else localStorage.removeItem("logintoken");
     });
-  }
-  useEffect(() => {
-    authenticate();
   }, []);
   return (
     <>
@@ -48,10 +43,6 @@ function Paths() {
       {Object.values(usedPaths).includes(loc) ? null : (
         <Navigate to={usedPaths.landing} replace={true} />
       )}
-
-      {authed && loc !== "/todos" ? (
-        <Navigate to={usedPaths.todos} replace={true} />
-      ) : null}
     </>
   );
 }

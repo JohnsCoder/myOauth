@@ -11,14 +11,14 @@ import TodosProvider from "./contexts/todosContexts";
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
-    <BrowserRouter>
-      <RegisterProvider>
-        <LoginProvider>
-          <TodosProvider>
+    <RegisterProvider>
+      <LoginProvider>
+        <TodosProvider>
+          <BrowserRouter>
             <Paths />
-          </TodosProvider>
-        </LoginProvider>
-      </RegisterProvider>
-    </BrowserRouter>
+          </BrowserRouter>
+        </TodosProvider>
+      </LoginProvider>
+    </RegisterProvider>
   </React.StrictMode>
 );
