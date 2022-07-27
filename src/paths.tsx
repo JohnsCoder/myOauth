@@ -7,10 +7,10 @@ import {
   useLocation,
   useNavigate,
 } from "react-router-dom";
-import Landing from "./pages/landing/index";
-import Login from "./pages/login/index";
-import Register from "./pages/register/index";
-import TodoList from "./pages/todoList/index";
+import Landing from "./pages/landing";
+import Login from "./pages/login";
+import Register from "./pages/register";
+import TodoList from "./pages/todoList";
 import api from "./services/api";
 
 const usedPaths = {

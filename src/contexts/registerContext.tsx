@@ -39,7 +39,7 @@ function RegisterProvider({ children }: { children: ReactNode }) {
     }));
   }
 
-  function register(): void {
+  function register() {
     if (Object.values(user).every((e) => e !== ""))
       api
         .post("/auth/register", params)

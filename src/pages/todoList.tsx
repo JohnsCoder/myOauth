@@ -1,8 +1,8 @@
-import styles from "../../styles/pages/todoList.module.css";
-import Header from "../../components/header";
-import Cards from "../../components/cards";
+import styles from "../styles/pages/todoList.module.css";
+import Header from "../components/header";
+import Cards from "../components/cards";
 import { useContext, useEffect } from "react";
-import { TodosContext } from "../../contexts/todosContexts";
+import { TodosContext } from "../contexts/todosContexts";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 
@@ -10,6 +10,7 @@ function TodoList() {
   const { handleData, nick, todoList, postTodo, values, logout } =
     useContext(TodosContext);
   useEffect;
+
   return (
     <>
       <Header />
@@ -29,9 +30,15 @@ function TodoList() {
         </div>
 
         <hr />
-        {todoList.map((e, y) => (
-          <Cards key={y} content={e as { idTodos: number; todos: string }} />
-        ))}
+        {todoList.length === 0 ? (
+          <div>
+            <h1>Not notes fount...</h1>
+          </div>
+        ) : (
+          todoList.map((e, y) => (
+            <Cards key={y} content={e as { idTodos: number; todos: string }} />
+          ))
+        )}
       </div>
     </>
   );

@@ -1,8 +1,8 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
-import Header from "../../components/header";
-import { LoginContext } from "../../contexts/loginContexts";
-import styles from "../../styles/pages/login.module.css";
+import Header from "../components/header";
+import { LoginContext } from "../contexts/loginContexts";
+import styles from "../styles/pages/login.module.css";
 function Login() {
   const { handleData, login } = useContext(LoginContext);
   return (

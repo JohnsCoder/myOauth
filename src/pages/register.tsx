@@ -1,11 +1,10 @@
-import Header from "../../components/header";
-import styles from "../../styles/pages/register.module.css";
-import { RegisterContext } from "../../contexts/registerContext";
+import Header from "../components/header";
+import styles from "../styles/pages/register.module.css";
+import { RegisterContext } from "../contexts/registerContext";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
-
 
 function Register() {
   const { handleData, register } = useContext(RegisterContext);
@@ -13,7 +12,9 @@ function Register() {
     <>
       <Header />
       <Link to="/login">
-        <button><FontAwesomeIcon icon={faArrowLeft} /></button>
+        <button>
+          <FontAwesomeIcon icon={faArrowLeft} />
+        </button>
       </Link>
       <div className={styles.register}>
         <form className={styles.formRegister}>
@@ -50,7 +51,7 @@ function Register() {
             <button
               onClick={(e) => {
                 e.preventDefault();
-                () => register();
+                register();
               }}
             >
               Register
