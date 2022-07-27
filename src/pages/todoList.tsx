@@ -32,7 +32,7 @@ function TodoList() {
         <hr />
         {todoList.length === 0 ? (
           <div>
-            <h1>Not notes fount...</h1>
+            <h1>No notes found...</h1>
           </div>
         ) : (
           todoList.map((e, y) => (
