@@ -16,10 +16,10 @@ To see the backend part visit [myOAuthTodo-backend](https://github.com/JohnsCode
 #
 # Progress -
 
-### Loading... 80%
+### Loading... 95%
 
-- ~~**Create Todo Interface**~~
 - **Create Landing page interface**
+- ~~**Create Todo Interface**~~
 - ~~**Create Register page Interface**~~
 - ~~**Create Login Page Interface**~~
 
