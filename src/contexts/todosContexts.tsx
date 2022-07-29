@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useEffect, useState } from "react";
+import React, { createContext, ReactNode, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../services/api";
 
@@ -51,15 +51,15 @@ function TodosProvider({ children }: { children: ReactNode }) {
   function getTodo() {
     api.post("/todos/get-todo", params).then((res) => setTodoList(res.data));
   }
-  function postTodo(e: any) {
+  function postTodo(e: React.KeyboardEvent<HTMLInputElement>) {
     params.append("todo", values);
-    if (e.keyCode === 13) {
+    if (e.key === "Enter") {
       api.post("/todos/send-todo", params).then(() => getTodo());
       setValues("");
     }
   }
 
-  function deleteTodo(e: any) {
+  function deleteTodo(e: number) {
     api.delete(`/todos/delete-todo/${e}`).then(() => getTodo());
   }
 

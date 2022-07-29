@@ -23,7 +23,7 @@ function TodoList() {
           <input
             type="text"
             placeholder="What do?..."
-            onChange={(e) => handleData(e)}
+            onChange={handleData}
             onKeyDown={postTodo}
             value={values}
           />
