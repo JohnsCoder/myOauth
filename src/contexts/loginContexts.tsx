@@ -39,6 +39,7 @@ function LoginProvider({ children }: { children: ReactNode }) {
       api
         .post("/auth/login", params)
         .then((res) => {
+          localStorage.removeItem("logintoken");
           localStorage.setItem("logintoken", res.data);
           navigate("/todos");
           window.location.reload();
