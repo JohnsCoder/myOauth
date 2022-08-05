@@ -35,7 +35,8 @@
 }
 
 .inputToDo input {
-  width: 600px;
+  max-width: 600px;
+  width: 97vw;
   height: 100px;
   border-radius: 5px;
   outline: none;
@@ -47,16 +48,7 @@
 }
 
 hr {
-  width: 560px;
+  max-width: 560px;
+  width: 93vw;
   background-color: rgb(175, 175, 175);
-}
-
-@media (max-width: 625px) {
-  .inputToDo input {
-    width: 97vw;
-  }
-
-  hr {
-    width: 93vw;
-  }
 }

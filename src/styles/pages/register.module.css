@@ -11,7 +11,9 @@
   flex-direction: column;
   align-items: center;
   height: 400px;
-  width: 400px;
+  max-width: 400px;
+  width: 100vw;
+
   background-color: rgb(74, 74, 74);
 
   border-radius: 5px;
@@ -39,19 +41,12 @@ input {
   padding: 10px;
 }
 
-.formRegister div a{
+.formRegister div a {
   color: white;
-  background-color: #6B6B6B;
+  background-color: #6b6b6b;
   text-decoration: none;
   width: 200px;
   height: 40px;
   border-radius: 5px;
-    padding: 11px;
-}
-
-
-@media (max-width: 424px) {
-  .formRegister {
-    width: 100vw;
-  }
+  padding: 11px;
 }
