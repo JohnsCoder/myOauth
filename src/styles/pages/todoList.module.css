@@ -23,7 +23,7 @@
   align-items: center;
 }
 
-.toDo h1 {
+.todo_header h1 {
   align-self: flex-start;
   margin: 10px;
 }
