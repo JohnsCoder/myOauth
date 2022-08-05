@@ -31,3 +31,9 @@
      background-color: rgb(203, 203, 203);
 
 }
+
+@media (max-width:625px) {
+     .cards {
+          width: 92vw;
+     }
+}

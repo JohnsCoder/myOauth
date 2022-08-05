@@ -48,3 +48,10 @@ input {
   border-radius: 5px;
     padding: 11px;
 }
+
+
+@media (max-width: 424px) {
+  .formRegister {
+    width: 100vw;
+  }
+}

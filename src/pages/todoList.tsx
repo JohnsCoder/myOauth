@@ -14,11 +14,14 @@ function TodoList() {
   return (
     <>
       <Header />
-      <div className={styles.logout} onClick={logout}>
-        <FontAwesomeIcon icon={faArrowRightFromBracket} />
-      </div>
-      <div className={styles.toDo}>
+      <header className={styles.todo_header}>
         <h1>Hello, {nick}.</h1>
+
+        <div className={styles.logout} onClick={logout}>
+          <FontAwesomeIcon icon={faArrowRightFromBracket} />
+        </div>
+      </header>
+      <div className={styles.toDo}>
         <div className={styles.inputToDo}>
           <input
             type="text"

@@ -1,16 +1,16 @@
-header {
+.top_header {
      display: flex;
      justify-content: center;
      box-shadow: rgba(255, 255, 255, 0.14) 1px 5px 26px;
      width: 100%;
 }
 
-header h1 {
+.top_header h1 {
      font-size: 3em;
      padding: 5px;
 }
 
-header a {
+.top_header a {
      text-decoration: none;
      color: white;
 

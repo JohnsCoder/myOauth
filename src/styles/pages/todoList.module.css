@@ -1,49 +1,62 @@
+.todo_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .logout {
-     float: right;
-     font-size: 50px;
-     margin: 15px;
-     border-radius: 10px;
-     transition: all .5s;
+  float: right;
+  font-size: 50px;
+  margin: 15px;
+  border-radius: 10px;
+  transition: all 0.5s;
 }
 
 .logout:hover {
-     color: black;
+  color: black;
 }
 
 .toDo {
-     display: flex;
-     flex-direction: column;
-     justify-content: center;
-     align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-.toDo h1{
-     align-self: flex-start;
-     margin: 10px;
+.toDo h1 {
+  align-self: flex-start;
+  margin: 10px;
 }
-
 
 .inputToDo {
-     display: flex;
-     margin: 100px auto 25px auto;
-     justify-content: center;
+  display: flex;
+  margin: 100px auto 25px auto;
+  justify-content: center;
 }
 
-.inputToDo input{
-     width: 600px;
-     height: 100px;
-     border-radius: 5px;
-     outline: none;
-     border: solid white 1px;
-     font-size: 60px;
-     padding: 10px;
-     background-color: #D9D9D9;
-     color: #898989;
+.inputToDo input {
+  width: 600px;
+  height: 100px;
+  border-radius: 5px;
+  outline: none;
+  border: solid white 1px;
+  font-size: 60px;
+  padding: 10px;
+  background-color: #d9d9d9;
+  color: #898989;
 }
 
 hr {
-     width: 560px;
-     background-color: rgb(175, 175, 175);
+  width: 560px;
+  background-color: rgb(175, 175, 175);
 }
 
+@media (max-width: 625px) {
+  .inputToDo input {
+    width: 100vw;
+  }
 
+  hr {
+    width: 95vw;
+  }
+}
