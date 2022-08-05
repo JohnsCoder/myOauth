@@ -53,10 +53,10 @@ hr {
 
 @media (max-width: 625px) {
   .inputToDo input {
-    width: 100vw;
+    width: 97vw;
   }
 
   hr {
-    width: 95vw;
+    width: 93vw;
   }
 }
