@@ -12,6 +12,7 @@ import Login from "./pages/login";
 import Register from "./pages/register";
 import TodoList from "./pages/todoList";
 import api from "./services/api";
+import { CookiesContext } from "./contexts/cookiesContexts";
 
 const usedPaths = {
   landing: "/",
@@ -20,18 +21,19 @@ const usedPaths = {
   todos: "/todos",
 };
 function Paths() {
+  const { cookies } = useContext(CookiesContext);
+
   const loc = useLocation().pathname;
 
   const navigate = useNavigate();
   useEffect(() => {
     const params = new URLSearchParams();
-    params.append("tokenid", localStorage.getItem("logintoken") || "");
+    params.append("tokenid", cookies.get() || "");
     api.post("/auth/authenticaded", params).then((res) => {
       if (res.data === "succesful authenticated") {
         navigate("/todos");
-      } else localStorage.removeItem("logintoken");
-    }
-    );
+      } else cookies.remove();
+    });
   }, []);
   return (
     <>

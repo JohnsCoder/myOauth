@@ -1,5 +1,7 @@
 import React, { createContext, ReactNode, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { CookiesContext } from "./cookiesContexts";
 import api from "../services/api";
 
 interface Todosinterface {
@@ -15,6 +17,7 @@ interface Todosinterface {
 export const TodosContext = createContext({} as Todosinterface);
 
 function TodosProvider({ children }: { children: ReactNode }) {
+  const { cookies } = useContext(CookiesContext);
   const [values, setValues] = useState<string>("");
   const [nick, setNick] = useState<string>("");
   const [todoList, setTodoList] = useState<Object[]>([]);
@@ -22,24 +25,24 @@ function TodosProvider({ children }: { children: ReactNode }) {
   const navigate = useNavigate();
 
   const params = new URLSearchParams();
-  params.append("tokenid", localStorage.getItem("logintoken") || "");
+  params.append("tokenid", cookies.get() || "");
 
   useEffect(() => {
     api.post("/auth/authenticaded", params).then((res) => {
       if (res.data === "succesful authenticated") null;
       else {
-        localStorage.removeItem("logintoken");
+        cookies.remove();
         navigate("/");
       }
     });
   }, []);
 
   function logout() {
-    localStorage.removeItem("logintoken");
+    cookies.remove();
     navigate("/login");
     window.location.reload();
   }
-  
+
   function handleData(e: React.ChangeEvent<HTMLInputElement>) {
     setValues(e.target.value);
   }
@@ -62,7 +65,6 @@ function TodosProvider({ children }: { children: ReactNode }) {
   function deleteTodo(e: number) {
     api.delete(`/todos/delete-todo/${e}`).then(() => getTodo());
   }
-
 
   useEffect(() => {
     getTodo();

@@ -1,6 +1,12 @@
-import { AxiosResponse } from "axios";
-import { createContext, ReactNode, useEffect, useState } from "react";
+import {
+  createContext,
+  ReactNode,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 import { useNavigate } from "react-router-dom";
+import { CookiesContext } from "./cookiesContexts";
 import api from "../services/api";
 
 type user = {
@@ -8,22 +14,17 @@ type user = {
   password: string;
 };
 
-type cookies = {
-  add: (value: AxiosResponse) => void;
-  remove: () => void;
-  get: () => string;
-};
-
 interface LoginContextInterface {
   handleData: (e: React.ChangeEvent<HTMLInputElement>) => void;
   login: () => void;
   loged: boolean;
-  cookies: cookies;
 }
 
 export const LoginContext = createContext({} as LoginContextInterface);
 
 function LoginProvider({ children }: { children: ReactNode }) {
+  const { cookies } = useContext(CookiesContext);
+
   const [loged, setLoged] = useState(false);
   const [user, setUser] = useState<user>({
     email: "",
@@ -43,28 +44,13 @@ function LoginProvider({ children }: { children: ReactNode }) {
     }));
   }
 
-  const cookies: cookies = {
-    add(value) {
-      document.cookie = `loginToken=${value}; expires=${new Date(
-        new Date().getTime() + 24 * 60 * 60 * 1000
-      )}; place="/"; SameSite=strict; Secure";`;
-    },
-    remove() {
-      document.cookie = `loginToken=""; expires=${Date()}`;
-    },
-    get() {
-      return document.cookie.split('=')[1]
-
-    },
-  };
-
   function login() {
     if (Object.values(user).every((e) => e !== ""))
       api
         .post("/auth/login", params)
         .then((res) => {
-          localStorage.removeItem("logintoken");
-          localStorage.setItem("logintoken", res.data);
+          cookies.remove();
+          cookies.add(res.data);
           navigate("/todos");
           window.location.reload();
         })
@@ -73,7 +59,7 @@ function LoginProvider({ children }: { children: ReactNode }) {
   }
 
   return (
-    <LoginContext.Provider value={{ handleData, login, loged, cookies }}>
+    <LoginContext.Provider value={{ handleData, login, loged }}>
       {children}
     </LoginContext.Provider>
   );
