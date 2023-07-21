@@ -1,43 +1,11 @@
-# My Todo OAuth
+### Todo-list app.
 
-### Todo app with login.
 
-#### FRONTEND PART
+## GO TO [BACKEND](https://github.com/JohnsCoder/myOAuthTodo-backend) 
 
-## GO TO [BACKEND](https://github.com/JohnsCoder/myOAuthTodo-backend)
-
-| **Vite** | **React** | 
-
-# Index -
-
-- **[Progress](#progress--)**
-- **[Scripts](#scripts--)**
-- **[Dependencies](#dependencies--)**
-#
-# Progress -
-
-### Loading... 95%
-
-- **Create Landing page interface**
-- ~~**Create Todo Interface**~~
-- ~~**Create Register page Interface**~~
-- ~~**Create Login Page Interface**~~
-
-#
-# Scripts - 
+# Run
 to install all project dependencies execute:
-`yarn`
+`yarn` or `npm i`
 
 to start the application execute:
-`yarn dev`
-#
-# Dependencies -
-- **[yarn](https://yarnpkg.com/getting-started/install)**
-- **[git](https://git-scm.com/downloads)**
-- **[Vite.js](https://vitejs.dev)**
-
-## Library - 
-- **axios**
-- **react-router-dom**
-- **font-awesome**
-- **react-context**
+`yarn dev` or `npm run dev`
