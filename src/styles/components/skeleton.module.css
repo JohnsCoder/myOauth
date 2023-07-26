@@ -1,5 +1,5 @@
 .skeleton {
-  animation: skeleton-loading 1s linear infinite alternate;
+  animation: skeleton-loading .6s linear infinite alternate;
 }
 
 @keyframes skeleton-loading {

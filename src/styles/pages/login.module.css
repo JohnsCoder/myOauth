@@ -17,6 +17,11 @@
 
   border-radius: 5px;
   justify-content: space-around;
+
+  font-size: 1.2em;
+  font-weight: 600;
+
+  border-radius: 3px;
 }
 
 .formLogin > div:nth-child(2),
@@ -50,6 +55,18 @@
 }
 
 .login-window button {
-  width: 200px;
-  height: 40px;
+  border: 2px solid black;
+  text-decoration: none;
+  color: black;
+  font-size: 1.2em;
+  font-weight: 600;
+  background: #dddddd;
+  border-radius: 3px;
+  cursor: pointer;
+  padding: 17px;
+}
+
+.login-window button:hover {
+  background-color: white;
+
 }
