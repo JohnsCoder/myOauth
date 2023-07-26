@@ -34,7 +34,7 @@
   text-align: center;
 }
 
-input {
+.register input {
   height: 30px;
   width: 100%;
   outline: none;

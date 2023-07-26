@@ -1,14 +1,14 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import Header from "../components/header";
-import { LoginContext } from "../contexts/loginContexts";
+import { LoginContext } from "../contexts/loginContext";
 import styles from "../styles/pages/login.module.css";
 function Login() {
   const { handleData, login } = useContext(LoginContext);
   return (
     <>
       <Header />
-      <div className={styles.login}>
+      <div className={styles["login-window"]}>
         <form className={styles.formLogin}>
           <h1>Login</h1>
           <div>
@@ -30,10 +30,10 @@ function Login() {
                 login();
               }}
             >
-              Logar
+              Login
             </button>
             <div>
-              <Link to="/register">registrar</Link>
+              <Link to="/register">Register</Link>
             </div>
           </div>
         </form>

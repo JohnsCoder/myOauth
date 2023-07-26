@@ -17,37 +17,26 @@ type user = {
 export const RegisterContext = createContext({} as RegisterContextInterface);
 
 function RegisterProvider({ children }: { children: ReactNode }) {
-  const [user, setUser] = useState<user>({
-    nickname: "",
-    phonenumber: "",
-    email: "",
-    password: "",
-  });
+  const [user, setUser] = useState<user>();
 
   const navigate = useNavigate();
 
-  const params = new URLSearchParams();
-  params.append("nickname", user.nickname);
-  params.append("email", user.email);
-  params.append("number", user.phonenumber);
-  params.append("password", user.password);
-
   function handleData(e: React.ChangeEvent<HTMLInputElement>) {
-    setUser((data) => ({
-      ...data,
+    setUser((user) => ({
+      ...user!,
       [e.target.name]: e.target.value,
     }));
   }
 
-  function register() {
-    if (Object.values(user).every((e) => e !== ""))
-      api
-        .post("/auth/register", params)
-        .then((res) => {
-          navigate("/login");
-        })
-        .catch((err) => alert(err.response.data));
-    else alert("values can't be empty");
+  async function register() {
+    if (!user) alert("values can't be empty");
+
+    try {
+      await api.post("/auth/register", user);
+      navigate("/login");
+    } catch (err: any) {
+      alert(err.response.data.error.message);
+    }
   }
   return (
     <RegisterContext.Provider value={{ handleData, register }}>

@@ -1,9 +1,9 @@
-.login {
+.login-window {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: calc(100% - 66.06px);
+  height: calc(100vh - 66px);
 }
 
 .formLogin {
@@ -36,19 +36,20 @@
   justify-content: center;
 }
 
-.formLogin div:nth-child(4) div a{
+.formLogin div:nth-child(4) div a {
+  margin-top: 10px;
   width: 120px;
   color: white;
 }
 
-input {
+.login-window input {
   height: 30px;
   width: 100%;
   outline: none;
   padding: 10px;
 }
 
-button {
+.login-window button {
   width: 200px;
   height: 40px;
 }

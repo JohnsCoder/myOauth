@@ -4,7 +4,7 @@ function Header() {
   return (
     <header className="top_header">
       <h1>
-        <Link to="/">Todo List</Link>
+        <Link to="/">TODO</Link>
       </h1>
     </header>
   );

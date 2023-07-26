@@ -1,53 +1,61 @@
-import { useContext, useEffect, useState } from "react";
-import {
-  BrowserRouter,
-  Navigate,
-  Route,
-  Routes,
-  useLocation,
-  useNavigate,
-} from "react-router-dom";
+import { useEffect } from "react";
+import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
+import HomepageProvider from "./contexts/homepageContext";
+import LoginProvider from "./contexts/loginContext";
+import RegisterProvider from "./contexts/registerContext";
+import Homepage from "./pages/homepage";
 import Landing from "./pages/landing";
 import Login from "./pages/login";
 import Register from "./pages/register";
-import TodoList from "./pages/todoList";
-import api from "./services/api";
-import { CookiesContext } from "./contexts/cookiesContexts";
+import EditorProvider from "./contexts/components/editor.context";
+import TodoProvider from "./contexts/components/todo.context";
 
-const usedPaths = {
-  landing: "/",
-  login: "/login",
-  register: "/register",
-  todos: "/todos",
-};
 function Paths() {
-  const { cookies } = useContext(CookiesContext);
+  const routes = (
+    <Routes>
+      <Route path="/" element={<Landing />} />
+      <Route
+        path="/register"
+        element={
+          <RegisterProvider>
+            <Register />
+          </RegisterProvider>
+        }
+      />
+      <Route
+        path="/login"
+        element={
+          <LoginProvider>
+            <Login />
+          </LoginProvider>
+        }
+      />
+      <Route
+        path="/homepage"
+        element={
+          <TodoProvider>
+            <EditorProvider>
+              <HomepageProvider>
+                <Homepage />
+              </HomepageProvider>
+            </EditorProvider>
+          </TodoProvider>
+        }
+      />
+    </Routes>
+  );
 
-  const loc = useLocation().pathname;
+  const paths = routes.props.children.map(
+    (child: JSX.Element) => child.props.path
+  );
+  const location = useLocation().pathname;
 
   const navigate = useNavigate();
   useEffect(() => {
-    const params = new URLSearchParams();
-    params.append("tokenid", cookies.get() || "");
-    api.post("/auth/authenticaded", params).then((res) => {
-      if (res.data === "succesful authenticated") {
-        navigate("/todos");
-      } else cookies.remove();
-    });
+    !paths.includes(location) && navigate("/");
   }, []);
-  return (
-    <>
-      <Routes>
-        <Route path="/" element={<Landing />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/todos" element={<TodoList />} />
-      </Routes>
-      {Object.values(usedPaths).includes(loc) ? null : (
-        <Navigate to="/" replace={true} />
-      )}
-    </>
-  );
+
+  return routes;
 }
 
 export default Paths;

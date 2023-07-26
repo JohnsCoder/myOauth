@@ -1,6 +1,24 @@
-.content {
-     height: inherit;
-     display: flex;
-     align-items: center;
-     justify-content: center;
+.landing-window {
+  height: calc(100vh - 66px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.landing-window a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  color: black;
+  font-size: 1.2em;
+  font-weight: 600;
+  width: 100px;
+  height: 60px;
+  background: #dddddd;
+  border-radius: 3px;
+}
+
+.landing-window a:hover {
+  background-color: white;
 }

@@ -1,8 +1,8 @@
+import { AxiosRequestConfig } from "axios";
 import React, { createContext, ReactNode, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useContext } from "react";
-import { CookiesContext } from "./cookiesContexts";
 import api from "../services/api";
+import cookies from "../services/cookies";
 
 interface Todosinterface {
   handleData: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -14,31 +14,23 @@ interface Todosinterface {
   logout: () => void;
 }
 
-export const TodosContext = createContext({} as Todosinterface);
+export const HomepageContext = createContext({} as Todosinterface);
 
-function TodosProvider({ children }: { children: ReactNode }) {
-  const { cookies } = useContext(CookiesContext);
+function HomepageProvider({ children }: { children: ReactNode }) {
   const [values, setValues] = useState<string>("");
   const [nick, setNick] = useState<string>("");
   const [todoList, setTodoList] = useState<Object[]>([]);
 
   const navigate = useNavigate();
 
-  const params = new URLSearchParams();
-  params.append("tokenid", cookies.get() || "");
-
-  useEffect(() => {
-    api.post("/auth/authenticaded", params).then((res) => {
-      if (res.data === "succesful authenticated") null;
-      else {
-        cookies.remove();
-        navigate("/");
-      }
-    });
-  }, []);
+  const config: AxiosRequestConfig = {
+    headers: {
+      Authorization: "Bearer " + cookies.get("tokenId"),
+    },
+  };
 
   function logout() {
-    cookies.remove();
+    cookies.remove("tokenId");
     navigate("/login");
     window.location.reload();
   }
@@ -48,22 +40,25 @@ function TodosProvider({ children }: { children: ReactNode }) {
   }
 
   function getNick() {
-    api.post("/auth/nick", params).then((res) => setNick(res.data[0].nickname));
+    api.get("/user/nick", config).then((res) => {
+      setNick(res.data.payload.nickname);
+    });
   }
 
   function getTodo() {
-    api.post("/todos/get-todo", params).then((res) => setTodoList(res.data));
+    api.get("/todo", config).then((res) => {
+      setTodoList(res.data.payload);
+    });
   }
   function postTodo(e: React.KeyboardEvent<HTMLInputElement>) {
-    params.append("todo", values);
     if (e.key === "Enter") {
-      api.post("/todos/send-todo", params).then(() => getTodo());
+      api.post("/todo", { content: values }, config).then(() => getTodo());
       setValues("");
     }
   }
 
   function deleteTodo(e: number) {
-    api.delete(`/todos/delete-todo/${e}`).then(() => getTodo());
+    api.delete(`/todo/${e}`, config).then(() => getTodo());
   }
 
   useEffect(() => {
@@ -72,7 +67,7 @@ function TodosProvider({ children }: { children: ReactNode }) {
   }, []);
 
   return (
-    <TodosContext.Provider
+    <HomepageContext.Provider
       value={{
         handleData,
         nick,
@@ -84,8 +79,8 @@ function TodosProvider({ children }: { children: ReactNode }) {
       }}
     >
       {children}
-    </TodosContext.Provider>
+    </HomepageContext.Provider>
   );
 }
 
-export default TodosProvider;
+export default HomepageProvider;
