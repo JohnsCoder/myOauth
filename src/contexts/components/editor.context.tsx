@@ -21,7 +21,7 @@ interface EditorInterface {
 
 type TipTapStyle = {
   editorDisplay: React.CSSProperties["display"];
-  inputPlaceHolder?: "Title..." | "What do today?";
+  inputPlaceHolder?: "Título..." | "Escrever nota...";
 };
 
 type TipTapProps = {
@@ -40,11 +40,11 @@ function EditorProvider({ children }: { children: ReactNode }) {
   const tipTapCreateProps: TipTapProps = {
     default: {
       editorDisplay: "none",
-      inputPlaceHolder: "What do today?",
+      inputPlaceHolder: "Escrever nota...",
     },
     open: {
       editorDisplay: "flex",
-      inputPlaceHolder: "Title...",
+      inputPlaceHolder: "Título...",
     },
   };
 
@@ -82,7 +82,7 @@ function EditorProvider({ children }: { children: ReactNode }) {
       Placeholder.configure({
         showOnlyWhenEditable: false,
         emptyEditorClass: styles["is-editor-empty"],
-        placeholder: "What do today?",
+        placeholder: "Escrever nota...",
       }),
     ],
     onBlur(props) {
@@ -106,7 +106,7 @@ function EditorProvider({ children }: { children: ReactNode }) {
       Placeholder.configure({
         showOnlyWhenEditable: false,
         emptyEditorClass: styles["is-editor-empty"],
-        placeholder: "What do today?",
+        placeholder: "Escrever nota...",
       }),
     ],
     onBlur(props) {
