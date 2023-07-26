@@ -97,17 +97,17 @@ function TodoProvider({ children }: { children: ReactNode }) {
 
     renderTodos(updatedRepository);
 
-    await api.put(`/todo/${id}`, { content }, config);
     setTodoRepository(updatedRepository);
+    await api.put(`/todo/${id}`, { content }, config);
   }
 
   async function deleteTodo(id: string) {
     const updatedRepository = todoRepository!.filter((y) => y.id !== id);
 
     renderTodos(updatedRepository);
+    setTodoRepository(updatedRepository);
     await api.delete(`/todo/${id}`, config);
 
-    setTodoRepository(updatedRepository);
   }
 
   useMemo(async () => {
