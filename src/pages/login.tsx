@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Header from "../components/header";
 import { LoginContext } from "../contexts/loginContext";
 import styles from "../styles/pages/login.module.css";
+import Loading from "../components/loading";
 function Login() {
   const { handleData, login } = useContext(LoginContext);
   return (
@@ -38,6 +39,7 @@ function Login() {
           </div>
         </form>
       </div>
+      <Loading />
     </>
   );
 }

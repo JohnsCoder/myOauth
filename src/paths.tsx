@@ -1,5 +1,7 @@
 import { useEffect } from "react";
 import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
+import EditorProvider from "./contexts/components/editor.context";
+import TodoProvider from "./contexts/components/todo.context";
 import HomepageProvider from "./contexts/homepageContext";
 import LoginProvider from "./contexts/loginContext";
 import RegisterProvider from "./contexts/registerContext";
@@ -7,8 +9,6 @@ import Homepage from "./pages/homepage";
 import Landing from "./pages/landing";
 import Login from "./pages/login";
 import Register from "./pages/register";
-import EditorProvider from "./contexts/components/editor.context";
-import TodoProvider from "./contexts/components/todo.context";
 
 function Paths() {
   const routes = (
