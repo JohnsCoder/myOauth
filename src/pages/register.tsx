@@ -32,7 +32,7 @@ function Register() {
             <input
               onChange={(e) => handleData(e)}
               type="phonenumber"
-              name="phonenumber"
+              name="number"
             />
           </div>
           <div>
