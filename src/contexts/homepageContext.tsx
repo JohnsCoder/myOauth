@@ -41,13 +41,13 @@ function HomepageProvider({ children }: { children: ReactNode }) {
 
   function getNick() {
     api.get("/user/nick", config).then((res) => {
-      setNick(res.data.payload.nickname);
+      setNick(res.data.data.nickname);
     });
   }
 
   function getTodo() {
     api.get("/todo", config).then((res) => {
-      setTodoList(res.data.payload);
+      setTodoList(res.data.data);
     });
   }
   function postTodo(e: React.KeyboardEvent<HTMLInputElement>) {

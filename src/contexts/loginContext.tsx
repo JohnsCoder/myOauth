@@ -38,7 +38,7 @@ function LoginProvider({ children }: { children: ReactNode }) {
     try {
       const loged = await api.post("/auth/login", user);
       cookies.remove("tokenId");
-      cookies.add(loged.data.payload);
+      cookies.add(loged.data.data);
       navigate("/homepage");
     } catch (err: any) {
       switchDisplay();

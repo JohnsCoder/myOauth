@@ -67,7 +67,7 @@ function TodoProvider({ children }: { children: ReactNode }) {
 
   async function getTodo() {
     const updatedRepository: Todo[] = (await api.get("/todo", config)).data
-      .payload;
+      .data;
     setTodoRepository(updatedRepository);
 
     renderTodos(updatedRepository);
@@ -84,7 +84,7 @@ function TodoProvider({ children }: { children: ReactNode }) {
 
     todoContent.id = (
       await api.post("/todo", { content: todoContent.content }, config)
-    ).data.payload.id;
+    ).data.data.id;
 
     setTodoRepository((todoRepository) => [todoContent, ...todoRepository!]);
   }
